@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动化aya</title>
+<!-- <script src="http://localhost/a.com/aya-Ajax/static/auto.js"></script> -->
+<!-- <script src="http://localhost/a.com/aya-Ajax/static/autoEve.js"></script> -->
+<!-- <script src="http://localhost/a.com/aya-Ajax/static/autoPed.js"></script> -->
+<script src="http://zjw1918.xyz/aya/static/auto.js"></script>
+<script src="http://zjw1918.xyz/aya/static/autoEve.js"></script>
+<script src="http://zjw1918.xyz/aya/static/autoPed.js"></script>
+<style>
+	#main{text-align: left;}
+	#info_info{display:none;}
+	h1{width: 350px;padding: 5px;text-align: center;}
+	#chuo{display:none;}
+	#def_list{display: none;}
+	#stone_leader1 {width:100px;}
+	#stone_leader2 {width:100px;}
+	#cfg_def {width:100px;}
+	#cfg_color {width:100px;}
+	#cfg_time {width:100px;}
+	#oppo_zid {width:150px;}
+	#cfg_hulu_color {width:150px;}
+	#att_stop{display: none;}
+	#goods_use{display: none;}
+	#auto_battle{display: none;}
+	#normal_switch{display: none;}
+	#super_switch{display: none;}
+	#total_gifts_show{display: none;}
+	#auto_progress{width: 150px;height: 6px;border: 1px solid #9C593E;display: none;}
+	#bar{background: #3ca5b9;width: 0%;height: 100%;}
+	#log{display: none;}
+	#inter_att_showhide_div{display: none;}
+</style>
+</head>
+<body><div id="main">
+    <h1>(:--->:)</h1>
+    右击在新窗口打开：<a href="http://note.youdao.com/share/?id=09b605f0a04dfa0e4bca9e766d9a7850&type=note"><span style="color:yellow">插件教程链接</span></a><br />
+    <h3>蓝鳍金枪鱼（所有功能都只需单击）</h3>
+	<input type="button" id="getinfo" value="获取信息">
+	<input type="button" id="hideinfo" value="显示/隐藏">
+	<div id="info_info">
+		等级：<span id="info_level"></span>
+		金币：<span id="info_cash"></span>
+		银货：<span id="info_coin"></span><br />
+		体力：<span id="info_energy"></span>
+		/ <span id="info_energy_max"></span><br />
+		攻灵：<span id="info_offense_guts"></span>
+		/ <span id="info_offense_guts_max"></span><br />
+		防灵：<span id="info_defense_guts"></span>
+		/ <span id="info_defense_guts_max"></span><br />
+		胜败：<span id="info_total_won"></span><span> / </span><span id="info_total_lost"></span><br />
+	</div>
+	<div id="auto_progress"><div id="bar"></div></div>
+	
+	<hr />
+	<input type="button" id="hide_consume" value="显示/隐藏吃物资">
+	<div id="goods_use">
+		<input type="button" onclick="use_goods(6);" value="吃糖果">
+		<input type="button" onclick="use_goods(5);" value="喝灵水">
+		<input type="button" onclick="use_goods(4);" value="吃丸子">
+		<input type="button" onclick="use_goods(1);" value="喝妹汁">
+		<input type="button" id="get_public_sprit" value="领公会灵"><br />
+		<span id="if_used"></span>
+	</div>
+
+    <hr style="border : 1px dashed blue;" />
+    <input type="button" id="shua221" value="刷221/秒">
+    <input type="button" id="m_shua221" value="刷221/分">
+    <input type="button" id="no_221" value="停止">
+    <div>实时体力:<strong id="show_en"></strong></div>
+
+	<hr />
+	<p><input type="button" id="get_fr" value="获取好友并戳之"></p>
+	<div id="chuo"><strong id="chuoId"></strong></div>
+
+	<hr />
+	<input type="button" id="inter_att" value="开始互撸石头">
+	<input type="button" id="no_att" value="停止互撸(点多次)">
+	<input type="button" id="inter_att_showhide" value="显示/隐藏"><br />
+	<div id="inter_att_showhide_div">
+		(提示：自己确定好互撸颗数所需要的攻灵,<br />到该攻灵立即叉掉当前网页,并换回防组)<br />
+		对方zid:<input type="text" id="oppo_zid">
+		目标石头的颜色编号(1~6):<br />
+		1-红,2-橙,3-黄,4-绿,5-蓝,6-紫
+		<input type="text" id="cfg_hulu_color">
+
+		<div id="def_list">
+			实时攻灵为：<span id="curr_at_spr"></span> 
+			总攻灵为：<span id="max_at_spr"></span> 
+			总攻击力为：<span id="total_att"></span> 
+			<br />
+			决斗监控===>：
+		</div>
+		<span id="att_res1"></span><br />
+	</div>
+	<div style="display:none" id="zid"><?php echo $_GET['zid'] ?></div>
+</div>
+<script>
+	localStorage.zid = $("#zid").html();
+	setInterval(function() {
+	    if ($("#zid").html() != localStorage.zid) {
+	        $("body").html('');
+	        window.close();
+	    }
+	}, 1000);
+</script>
+</body>
+</html>

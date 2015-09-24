@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动化aya</title>
+<!-- <link href="http://localhost/a.com/aya-Ajax/view/auto.css" rel="stylesheet" type="text/css" />
+<script src="http://localhost/a.com/aya-Ajax/static/auto.js"></script>
+<script src="http://localhost/a.com/aya-Ajax/static/autoEve.js"></script>
+<script src="http://localhost/a.com/aya-Ajax/static/autoPed.js"></script> -->
+<link href="http://zjw1918.xyz/aya/view/auto.css" rel="stylesheet" type="text/css" />
+<script src="http://zjw1918.xyz/aya/static/auto.js"></script>
+<script src="http://zjw1918.xyz/aya/static/autoEve.js"></script>
+<script src="http://zjw1918.xyz/aya/static/autoPed.js"></script>
+</head>
+<body>    
+    <h1>(:--->:)</h1>
+    右击在新窗口打开：<a href="http://note.youdao.com/share/?id=09b605f0a04dfa0e4bca9e766d9a7850&type=note"><span style="color:yellow">插件教程链接</span></a><br />
+    <h3>蓝鳍金枪鱼（所有功能都只需单击）</h3>
+<div class="tabs">
+	<div class="tabhost">
+    	<a href="#page1" class="selected">通用功能</a>
+        <a href="#page2">队伍设置</a>
+        <a href="#page3">式神列表</a>
+    </div>
+
+    <div class="tabcontent">
+<!--===========================================================================-->
+<!--===========================================================================-->
+<!--=================================第1个卡片=================================-->
+<!--===========================================================================-->
+<!--===========================================================================-->
+    	<div id="page1">
+            <input type="button" id="getinfo" value="获取信息">
+            <input type="button" id="hideinfo" value="显示/隐藏">
+            <div id="info_info">
+                等级：<span id="info_level"></span>
+                金币：<span id="info_cash"></span>
+                银货：<span id="info_coin"></span><br />
+                体力：<span id="info_energy"></span>
+                / <span id="info_energy_max"></span><br />
+                攻灵：<span id="info_offense_guts"></span>
+                / <span id="info_offense_guts_max"></span><br />
+                防灵：<span id="info_defense_guts"></span>
+                / <span id="info_defense_guts_max"></span><br />
+                胜败：<span id="info_total_won"></span><span> / </span><span id="info_total_lost"></span><br />
+            </div>
+            <div id="auto_progress"><div id="bar"></div></div>
+            
+            <hr style="border : 1px dashed blue;" />
+            <input type="button" id="hide_consume" value="显示/隐藏吃物资">
+            <div id="goods_use">
+                <input type="button" onclick="use_goods(6);" value="吃糖果">
+                <input type="button" onclick="use_goods(5);" value="喝灵水">
+                <input type="button" onclick="use_goods(4);" value="吃丸子">
+                <input type="button" onclick="use_goods(1);" value="喝妹汁">
+                <input type="button" id="get_public_sprit" value="领公会灵"><br />
+                <span id="if_used"></span>
+            </div>
+
+            <hr style="border : 1px dashed blue;" />
+            <input type="button" id="shua221" value="刷221/秒">
+            <input type="button" id="m_shua221" value="刷221/分">
+            <input type="button" id="no_221" value="停止">
+            <div>实时体力:<strong id="show_en"></strong></div>
+
+            <hr style="border : 1px dashed blue;" />
+                <input type="button" id="get_defense" value="封印石开始/屯石">
+                <input type="button" id="no_att" value="停止决斗(点多次)">
+                <input type="button" id="att_hide" value="显示/隐藏"><br />
+                <input type="button" id="get_defense_order" value="封印石开始/顺序"><br />
+            <div id="auto_battle">
+            <form id="form_stone_set">
+                高防队长(无标点):<input type="text" id="stone_leader1" name="stone_leader1">
+                低防队长:<input type="text" id="stone_leader2" name="stone_leader2">
+
+                输入颜色编号(1~6):1-红,2-橙,3-黄,4-绿,5-蓝,6-紫<br />
+		(顺序抢石此项不填)
+                <input type="text" id="cfg_color" name="cfg_color">
+                若防御力低于<input type="text" id="cfg_def" name="cfg_def">，则攻击。
+                回灵时间间隔为(单位:分钟)<br />(不喝水的需设置):<input type="text" id="cfg_time" name="cfg_time">
+                是否自动喝灵水:<input type="checkbox" id="is_water_stone"><br />
+            </form>
+                <div id="count_time_stone"></div>
+                <div id="def_list">
+                    实时攻灵为：<span id="curr_at_spr"></span> 
+                    总攻灵为：<span id="max_at_spr"></span> 
+                    总攻击力为：<span id="total_att"></span> 
+                    <br />
+                    决斗监控===>：
+                </div>
+                <span id="att_res1"></span><br />
+                <span id="att_res2"></span><br />
+
+                <input type="button" id="inter_att" value="开始互撸石头">
+                <input type="button" id="inter_att_showhide" value="显示/隐藏"><br />
+                <div id="inter_att_showhide_div">
+                    (提示：自己确定好互撸颗数所需要的攻灵,<br />到该攻灵立即叉掉当前网页,并换回防组)<br />
+                    对方zid:<input type="text" id="oppo_zid">
+                    目标石头的颜色编号(1~6):<br />
+                    1-红,2-橙,3-黄,4-绿,5-蓝,6-紫
+                    <input type="text" id="cfg_hulu_color">
+                </div>
+            </div><br />
+
+            <hr style="border : 1px dashed blue;" />
+            <p><input type="button" id="get_fr" value="获取好友并戳之"></p>
+            <div id="chuo"><strong id="chuoId"></strong></div>
+
+            <hr style="border : 1px dashed blue;" />
+            <input type="button" id="get_chap" value="获取故事章节(手型单击刷体,要停点'停止')" ><br />
+            宝玉是否自动吃丸子:<input type="checkbox" id="jude_is_ball"><br />
+            <div id="chap"></div>
+            <div id="chap_areas"></div>
+            <div id="chap_stages"></div>
+            <span id="jude_info"></span><br />
+            倒计时:<span id="count_time_jude"></span>
+
+            <hr style="border : 1px dashed blue;" />
+            <!-- <input type="button" id="single_ped" value="开始个人讨伐" > -->
+            <!-- <input type="button" id="guild_ped" value="公会讨伐（开发中，勿点）" > -->
+            <input type="button" id="single_ped_2" value="开始个讨2.0" >
+            <input type="button" id="ped_showhide" value="显示/隐藏">
+            <span id="count_time_ped"></span>
+            <div id="single_ped_body">
+            <form id="form_ped_set">
+                攻灵期望值设置(回灵到该值即攻击):<input type="text" id="cfg_offense_expect" name="cfg_offense_expect">
+                是否放羊：<input type="checkbox" id="is_sheep"><br />
+                选择放羊模式：<select id="sheep_model"><option value="1">自然放羊</option><option value="2">银货放羊</option></select>
+                放羊级数(例:75-76-77-78-79-80-81)：<input type="text" id="wolf_list" name="wolf_list">
+                是否自动喝水：<input type="checkbox" id="is_water_ped"><br />
+                当攻灵低于多少时自动喝水/自动回灵？<input type="text" id="cfg_water_ped" name="cfg_water_ped">
+                实时攻灵:<span id="curr_offense"></span><br />
+                <span id="single_ped_rpt"></span><br />
+            </form>
+            </div>
+
+            <!-- 自动爬塔 -->
+            <hr style="border : 1px dashed blue;" />
+<!--             <input type="button" id="club" value="半自动神社" >
+            <input type="button" id="club_auto" value="全自动神社" >
+            <input type="button" id="club_set" value="显示/隐藏神社设置" > -->
+            <input type="button" id="tower" value="半自动爬塔" >
+            <input type="button" id="tower_auto" value="全自动爬塔" >
+            <input type="button" id="club_set" value="显示/隐藏爬塔设置" >
+            <!-- <input type="button" id="clear_wander" value="清除游荡交涉残留" > -->
+            <input type="button" id="no_tower" value="停止" ><br />
+            <input type="button" id="log_on" value="打开/关闭日志(40条)" >
+            <span id="total_gifts_show">总礼物数为：<strong id="total_gifts" style="color:#FA58D0"></strong></span>
+            <div id="count_time_tower"></div>
+            <div id="tower_info">
+                该层完成度：<span id="progress"></span><br />
+                <span id="tower_event_info" class="log_info"></span><br />
+            </div>
+            <div id="log">
+                <hr style="border : 1px dashed blue;" />
+                <div id="log_cont" class="log_info"></div>
+            </div>
+
+            <hr style="border : 1px dashed blue;" />
+            <div id="club_set_div">
+                一、通用设置区(不消耗物资的必填):<br />
+                不消耗物资时：当体力耗尽,<br />回灵多长时间再次探索?(单位:分钟)
+                <input type="text" id="cfg_recover_time_energy">
+                二、物资设置区(不设置,不耗物资,纯回灵)：<br />
+                是否自动喝灵水(不喝即倒计时回攻灵):<input type="checkbox" id="is_water"><br />
+                当攻灵低于该值即喝水(攻灵值过低时游荡难出):<input type="text" id="cfg_lowest_gut">
+                是否自动吃丸子(不吃即倒计时回体力):<input type="checkbox" id="is_ball"><br />
+
+                三、式神设置区:<br />
+                (1)游荡设置区:<br />
+                怪獸貓詩織  	<select id="10101590" name="10101590"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                濃姬的髮簪      <select id="10101591" name="10101591"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                瀧夜叉姬 	    <select id="10101592" name="10101592"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                成衣  	        <select id="10101593" name="10101593"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                伊索德          <select id="10101594" name="10101594"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                山高神代櫻  	<select id="10101598" name="10101598"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+                <!-- 女武神 	<select id="101437" name="101437"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select> -->
+                (2)勾玉设置区:(若勾选了勾玉，<br />先遇到勾玉即收，请谨慎！)：<br />
+                <input type="checkbox" name="club_list" value="111590">怪獸貓詩織勾玉
+                <input type="checkbox" name="club_list" value="111591">濃姬的髮簪勾玉<br />
+                <input type="checkbox" name="club_list" value="111592">瀧夜叉姬勾玉
+                <input type="checkbox" name="club_list" value="111593">成衣勾玉
+                <input type="checkbox" name="club_list" value="111594">伊索德勾玉<br />
+                <input type="checkbox" name="club_list" value="111598">山高神代櫻勾玉
+                <!-- <input type="checkbox" name="club_list" value="111437">女武神勾玉 -->
+                <br /><span>请继续在"一键换攻组"设置对应妖怪的攻组</span>
+
+<!-- 
+	<br /><input type="button" id="att_noget" value="全打+不收">
+	<input type="button" id="att_get" value="全打+收">
+	<input type="button" id="noatt" value="全不打"><br />
+	琵琶法师(琵琶法师)	<select id="505860" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	琵琶法师(加拉迪亚)	<select id="505861" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>	
+	琵琶法师(泰坦妮亚)	<select id="505862" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	琵琶法师(奥布朗)	<select id="505863" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	琵琶法师(波克)		<select id="505864" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	彼列(彼列)			<select id="506870" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	彼列(加拉迪亚)		<select id="506871" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	彼列(香子蘭)		<select id="506872" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	彼列(忒提斯)		<select id="506873" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	弗利艾(弗利艾)		<select id="507440" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	弗利艾(长光)		<select id="507441" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	僵尸(僵尸)			<select id="505870" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	僵尸(麝香)			<select id="505871" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	僵尸(琥珀)			<select id="505872" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	僵尸(气精杰菲尔)	<select id="505873" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	僵尸(沙罗蔓达)		<select id="505874" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	春雷(春雷)			<select id="506880" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	春雷(麝)			<select id="506881" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	春雷(弗兰肯1号)		<select id="506882" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	春雷(亚利安赫德)	<select id="506883" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	春雷(蔷薇鞭)		<select id="506884" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	甲贺忍者(甲贺忍者)	<select id="506890" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	甲贺忍者(茉莉)		<select id="506891" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	甲贺忍者(报丧女妖)	<select id="506892" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	甲贺忍者(气精赛儿卡)<select id="506893" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	科学怪人(科学怪人)	<select id="507450" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	科学怪人(链锯珍)	<select id="507451" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	科学怪人(黛芬妮)	<select id="507452" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	科学怪人(溫蒂妮)	<select id="507453" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	科学怪人(煙花)		<select id="507454" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	妖魔(妖魔)			<select id="507460" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	妖魔(芬妮尔)		<select id="507461" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	妖魔(来蒂齐亚)		<select id="507462" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	伊莉莎白巴托里(伊莉莎白巴托里)	<select id="509510" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	伊莉莎白巴托里(米莉)			<select id="509511" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	伊莉莎白巴托里(地精)			<select id="509512" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	格莱希亚拉波斯(格莱希亚拉波斯)	<select id="509520" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	格莱希亚拉波斯(莱拉·维加)		<select id="509521" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	格莱希亚拉波斯(露西亚·维加)	<select id="509522" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	返魂香(返魂香)		<select id="505850" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>		
+	返魂香(玉桂)		<select id="505851" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	返魂香(弗兰肯二号)	<select id="505852" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+	返魂香(茉莉)		<select id="505853" class="club_list"><option value="1">打+不收</option><option value="2">打+收</option><option value="3">不打</option></select>
+ -->
+            </div>
+
+        </div>
+
+<!--=================================第2个卡片=================================-->
+<!--=================================第2个卡片=================================-->
+<!--=================================第2个卡片=================================-->
+<!--=================================第2个卡片=================================-->
+<!--=================================第2个卡片=================================-->
+        <div id="page2">
+            <input type="button" id="set_lead" value="勾选完换队长">
+            <input type="button" id="hide_normal_switch" value="显示/隐藏普通更换功能">
+            <div id="normal_switch">
+                <span id="if_set_leader_ok"></span><br />
+
+                <span>单换队长、更换小组成员：设完队长，再重新勾选</span><br />
+                <span>4位小组成员，勾选完点<input type="button" id="show4" value="show">显示4位小组成员id，</span><br />
+                <span>你可以复制保存起来，便于以后直接粘贴。之后↓</span><br />
+                
+                <input type="button" id="set_team4" value="点我更换小组成员">
+                <span id="if_set_team_ok"></span><br />
+
+                当前攻组id：<input type="text" id="att1"><br />
+                当前攻组名：<input type="text" id="att2"><br />
+            </div>
+            
+            <hr style="border : 1px dashed blue;" />
+            <input type="button" id="hide_super_switch" value="显示/隐藏高级更换功能(一键换攻组)">
+            <div id="super_switch">
+                <span>获取攻组id方法:先选1位队长，点show</span><br />
+                <span>勾掉队长，再选4位组员，点show</span><br />
+                <span>把5个id(包括标点)复制到攻组里。</span><br />
+                <input type="button" id="show5" value="show"><br />
+                队长id<input type="text" id="leader1"><br />
+                组员id<input type="text" id="team4"><br />
+                <hr style="border : 1px dashed blue;" />
+                <span id="if_set_all_leader_ok"></span><br />
+                <span id="if_set_all_team_ok"></span>
+                
+                <!--以下是全自动攻组设置区-->
+                <hr style="border : 1px dashed blue;" />
+                <form id="form_tower_set">
+                    全自动换组预先设置区=><br />
+                    女忍队长id(全自动必填,无分号):<input type="text" id="woman_leader" name="woman_leader">
+                    1~65、80~90、110、120、160层:<br />(格式例:12792;1406,1398,749,1420)
+                        <input type="button" onclick="set_all_team(10);" value="一键换攻组"><br /><input type="text" id="all_team10" name="all_team10">
+                    70: <input type="button" onclick="set_all_team(1015924);" value="一键换攻组"><br /><input type="text" id="all_team1015924" name="all_team1015924">
+                    75: <input type="button" onclick="set_all_team(1015925);" value="一键换攻组"><br /><input type="text" id="all_team1015925" name="all_team1015925">
+                    95: <input type="button" onclick="set_all_team(1015934);" value="一键换攻组"><br /><input type="text" id="all_team1015934" name="all_team1015934">
+                    100:<input type="button" onclick="set_all_team(1015935);" value="一键换攻组"><br /><input type="text" id="all_team1015935" name="all_team1015935">
+                    130:<input type="button" onclick="set_all_team(1015943);" value="一键换攻组"><br /><input type="text" id="all_team1015943" name="all_team1015943">
+                    140:<input type="button" onclick="set_all_team(1015944);" value="一键换攻组"><br /><input type="text" id="all_team1015944" name="all_team1015944">
+                    150:<input type="button" onclick="set_all_team(1015945);" value="一键换攻组"><br /><input type="text" id="all_team1015945" name="all_team1015945">
+                    170:<input type="button" onclick="set_all_team(1015952);" value="一键换攻组"><br /><input type="text" id="all_team1015952" name="all_team1015952">
+                    180:<input type="button" onclick="set_all_team(1015953);" value="一键换攻组"><br /><input type="text" id="all_team1015953" name="all_team1015953">
+                    190:<input type="button" onclick="set_all_team(1015954);" value="一键换攻组"><br /><input type="text" id="all_team1015954" name="all_team1015954">
+                    200:<input type="button" onclick="set_all_team(1015955);" value="一键换攻组"><br /><input type="text" id="all_team1015955" name="all_team1015955">
+
+                    怪獸貓詩織:  	 <input type="button" onclick="set_all_team(10101590);" value="一键换攻组"><br /><input type="text" id="all_team10101590" name="all_team10101590">
+                    濃姬的髮簪:  	 <input type="button" onclick="set_all_team(10101591);" value="一键换攻组"><br /><input type="text" id="all_team10101591" name="all_team10101591">
+                    瀧夜叉姬:	     <input type="button" onclick="set_all_team(10101592);" value="一键换攻组"><br /><input type="text" id="all_team10101592" name="all_team10101592">
+                    成衣:            <input type="button" onclick="set_all_team(10101593);" value="一键换攻组"><br /><input type="text" id="all_team10101593" name="all_team10101593">
+                    伊索德:          <input type="button" onclick="set_all_team(10101594);" value="一键换攻组"><br /><input type="text" id="all_team10101594" name="all_team10101594">
+                    山高神代櫻:      <input type="button" onclick="set_all_team(10101598);" value="一键换攻组"><br /><input type="text" id="all_team10101598" name="all_team10101598">
+                    <!-- 女武神:  <input type="button" onclick="set_all_team(101437);" value="一键换攻组"><br /><input type="text" id="all_team101437" name="all_team101437"> -->
+
+                    
+<!-- (格式例:12792;1406,1398,749,1420)
+                    琵琶法师:  	<input type="button" onclick="set_all_team(50586);" value="一键换攻组"><br /><input type="text" id="all_team50586" name="all_team50586">
+                    彼列:  		<input type="button" onclick="set_all_team(50687);" value="一键换攻组"><br /><input type="text" id="all_team50687" name="all_team50687">
+                    弗利艾:  	<input type="button" onclick="set_all_team(50744);" value="一键换攻组"><br /><input type="text" id="all_team50744" name="all_team50744">
+                    返魂香:  	<input type="button" onclick="set_all_team(50585);" value="一键换攻组"><br /><input type="text" id="all_team50585" name="all_team50585">
+                    僵尸:  		<input type="button" onclick="set_all_team(50587);" value="一键换攻组"><br /><input type="text" id="all_team50587" name="all_team50587">
+                    春雷:  		<input type="button" onclick="set_all_team(50688);" value="一键换攻组"><br /><input type="text" id="all_team50688" name="all_team50688">
+                    甲贺忍者:  	<input type="button" onclick="set_all_team(50689);" value="一键换攻组"><br /><input type="text" id="all_team50689" name="all_team50689">
+                    科学怪人:  	<input type="button" onclick="set_all_team(50745);" value="一键换攻组"><br /><input type="text" id="all_team50745" name="all_team50745">
+                    妖魔:  		<input type="button" onclick="set_all_team(50746);" value="一键换攻组"><br /><input type="text" id="all_team50746" name="all_team50746">
+                    伊莉莎白巴托里:  <input type="button" onclick="set_all_team(50951);" value="一键换攻组"><br /><input type="text" id="all_team50951" name="all_team50951">
+                    格莱希亚拉波斯:  <input type="button" onclick="set_all_team(50952);" value="一键换攻组"><br /><input type="text" id="all_team50952" name="all_team50952">
+ -->
+                    <input type="button" id="save_tower_set" value="全部锁定">
+                    <input type="button" id="clear_tower_set" value="全部忘记"><span id="if_clear_tower_set"></span>
+                </form>
+            </div>
+        </div>
+        <!--=================================第三个卡片=================================-->
+        <!--=================================第三个卡片=================================-->
+        <!--=================================第三个卡片=================================-->
+        <!--=================================第三个卡片=================================-->
+        <!--=================================第三个卡片=================================-->
+        <div id="page3">
+            <input type="button" id="show_all_cards" value="打开式神列表">
+            <input type="button" id="hide_all_list" value="显示/隐藏式神列表">
+            <div id="all_list"></div>
+        </div>
+    </div>
+    <div style="display:none" id="zid"><?php echo $_GET['zid'] ?></div>
+</div>
+<script>
+$(function() {
+    var tabhosts = $(".tabhost a");
+    
+    tabhosts.each(function() {
+        $($(this).attr("href")).hide();
+        
+        if ($(this).hasClass("selected")) {
+            $($(this).attr("href")).show();
+        }
+        
+        $(this).click(function(event) {
+            event.preventDefault();
+            
+            if (!$(this).hasClass("selected")) {
+                tabhosts.each(function() {
+                    $(this).removeClass("selected");
+                    $($(this).attr("href")).hide();
+                });
+                
+                $(this).addClass("selected");
+                $($(this).attr("href")).show();
+            }
+        });
+    });
+});
+$(document).ready(function() {
+    /* 判断是否支持localstorage */
+    if (localStorage) {
+        /* 读出localstorage中的值 */
+        var data1 = $("#form_tower_set").serializeArray();
+        $.each(data1, function(i) {
+            var t = data1[i].name;
+            var s = "localStorage."+t;
+            if (eval("("+s+")")) {
+                $("#"+t).val(eval("("+s+")"));
+            }
+        });
+
+        var data2 = $("#form_stone_set").serializeArray();
+        $.each(data2, function(i) {
+            var t = data2[i].name;
+            var s = "localStorage."+t;
+            if (eval("("+s+")")) {
+                $("#"+t).val(eval("("+s+")"));
+            }
+        });
+
+        var data3 = $("#form_ped_set").serializeArray();
+        $.each(data3, function(i) {
+            var t = data3[i].name;
+            var s = "localStorage."+t;
+            if (eval("("+s+")")) {
+                $("#"+t).val(eval("("+s+")"));
+            }
+        });
+
+    /* 当表单中的值改变时,localstorage的值也改变 */
+        $("input[type=text],select,textarea").change(function() {
+            $this = $(this);
+            localStorage[$this.attr("name")] = $this.val();
+        });
+        /* 如果表单提交，则调用clear方法 */
+        $("#save_tower_set").click(function() {
+            setTimeout(function  () {
+                $('#if_clear_tower_set').text('已锁定');
+            },300);
+        });
+        $("#clear_tower_set").click(function() {
+            $('#if_clear_tower_set').text('');
+            localStorage.clear();
+            setTimeout(function  () {
+                $('#if_clear_tower_set').text('已清除记忆');
+            },300);
+        }).change(function() {
+            console.log(localStorage);
+        });
+    }
+});
+localStorage.zid = $("#zid").html();
+setInterval(function() {
+    if ($("#zid").html() != localStorage.zid) {
+        $("body").html('');
+        window.close();
+    }
+}, 1000);
+</script></body>
+</html>

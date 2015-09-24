@@ -1,0 +1,54 @@
+.tabs {margin: 20px auto;}
+.tabhost {
+    height: 24px;
+}
+.tabhost a {
+    text-decoration: none;
+    background: #f7f7f7;
+    color: #ed6c07;
+    padding: 5px;
+    border-top: #dddddd 1px solid;
+    border-left: #dddddd 1px solid;
+    border-right: #dddddd 1px solid;
+}
+.tabcontent {
+    border: 1px #dddddd solid;
+}
+.tabhost a:hover {
+    background: #ed6c07;
+    color: #ffffff;
+    padding-bottom: 6px;
+}
+.tabhost a.selected {
+    background: #ffffff;
+    color: #ed6c07;
+    padding-bottom: 6px;
+}
+	#main{text-align: left;}
+	#info_info{display:none;}
+	h1{width: 350px;padding: 5px;text-align: center;}
+	#chuo{display:none;}
+	#def_list{display: none;}
+	#stone_leader1 {width:100px;}
+	#stone_leader2 {width:100px;}
+	#cfg_def {width:100px;}
+	#cfg_color {width:100px;}
+	#cfg_time {width:100px;}
+	#cfg_lowest_gut {width:100px;}
+	#cfg_recover_time_energy {width:100px;}
+	#oppo_zid {width:150px;}
+	#cfg_hulu_color {width:150px;}
+	#cfg_offense_expect {width:100px;}
+	#att_stop{display: none;}
+	#goods_use{display: none;}
+	#auto_battle{display: none;}
+	#normal_switch{display: none;}
+	#super_switch{display: none;}
+	#total_gifts_show{display: none;}
+	#auto_progress{width: 150px;height: 6px;border: 1px solid #9C593E;display: none;}
+	#bar{background: #3ca5b9;width: 0%;height: 100%;}
+	#log{display: none;}
+	#inter_att_showhide_div{display: none;}
+	#club_set_div{display: none;}
+	#single_ped_body{display: none;}
+
