@@ -5,12 +5,10 @@ define('ACC',true);
 echo '当前版本:v2.3;您的zid为：'.$_GET['zid'].'<br />';
 $zid = $_GET['zid'];
 
-// $conn = mysql_connect('localhost','root','1');
-// $sql = 'use aya';
-
-$conn = mysql_connect('qdm114844588.my3w.com','qdm114844588','jj4856951frd2');
-$sql = 'use qdm114844588_db';
-
+//mysql-自定义
+$conn = mysql_connect('~','~','~');
+$sql = 'use ~';
+//例如
 // $conn = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
 // $sql = 'use '.SAE_MYSQL_DB;
 
